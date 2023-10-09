@@ -1,5 +1,5 @@
 {
-  "name": "flashcard_rn",
+  "name": "MyApp",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,8 +10,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "color": "^4.2.3",
+    "faker": "^5.5.3",
+    "moment": "^2.29.4",
+    "moment-with-locales-es6": "^1.0.1",
     "react": "18.2.0",
-    "react-native": "0.72.5"
+    "react-native": "0.72.5",
+    "react-native-paper": "^5.10.6",
+    "react-native-vector-icons": "^10.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -20,7 +26,10 @@
     "@react-native/eslint-config": "^0.72.2",
     "@react-native/metro-config": "^0.72.11",
     "@tsconfig/react-native": "^3.0.0",
+    "@types/color": "^3.0.4",
+    "@types/faker": "^6.6.9",
     "@types/react": "^18.0.24",
+    "@types/react-native-vector-icons": "^6.4.15",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.2.1",
     "eslint": "^8.19.0",
