@@ -7,3 +7,8 @@ LogBox.ignoreLogs(['it is un']);
 LogBox.ignoreLogs(['The title']);
 LogBox.ignoreLogs(['']);
 //
+import React from 'react';
+import MainNavigator from './src/screens/MainNavigator';
+export default function App() {
+  return <MainNavigator />;
+}
