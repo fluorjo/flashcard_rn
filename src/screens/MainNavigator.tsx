@@ -1,25 +1,17 @@
-//에러 화면 방지
-import {LogBox} from 'react-native';
-console.error = error => error.apply;
-LogBox.ignoreAllLogs();
-LogBox.ignoreLogs(['Property ']);
-LogBox.ignoreLogs(['it is un']);
-LogBox.ignoreLogs(['The title']);
-LogBox.ignoreLogs(['']);
-//
-
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export default function MainNavigator() {
   return (
-    <View style={[styles.view]}>
-      <Text>top</Text>
-      <Text>bottom</Text>
-    </View>
+    <SafeAreaView style={[styles.view]}>
+      <Text style={[styles.text]}>aa</Text>
+      <Text>aasdasd</Text>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   view: {flex: 1, alignItems: 'center', justifyContent: 'space-between'},
+  text: {fontSize: 30},
 });

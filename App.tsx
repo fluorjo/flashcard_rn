@@ -1,14 +1,20 @@
-//에러 화면 방지
-import {LogBox} from 'react-native';
-console.error = error => error.apply;
-LogBox.ignoreAllLogs();
-LogBox.ignoreLogs(['Property ']);
-LogBox.ignoreLogs(['it is un']);
-LogBox.ignoreLogs(['The title']);
-LogBox.ignoreLogs(['']);
-//
 import React from 'react';
+import 'react-native-gesture-handler';
+
+import {enableScreens} from 'react-native-screens';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {NavigationContainer} from '@react-navigation/native';
+
 import MainNavigator from './src/screens/MainNavigator';
+
+enableScreens();
+
 export default function App() {
-  return <MainNavigator />;
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <MainNavigator />
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
 }
