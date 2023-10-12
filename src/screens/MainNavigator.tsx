@@ -8,18 +8,16 @@ import {useAutoFocus, AutoFocusProvider} from '../contexts';
 
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Home from './Home';
-import HomeLeft from './HomeLeft';
-import HomeRight from './HomeRight';
+import HomeScreen from './HomeScreen';
+import LeftScreen from './LeftScreen';
 
 const Stack = createStackNavigator();
 
 export default function MainNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="HomeLeft" component={HomeLeft} />
-      <Stack.Screen name="HomeRight" component={HomeRight} />
+    <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="LeftScreen" component={LeftScreen} />
     </Stack.Navigator>
   );
 }

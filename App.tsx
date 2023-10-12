@@ -24,6 +24,8 @@ import {ToggleThemeProvider} from './src/contexts';
 
 import MainNavigator from './src/screens/MainNavigator';
 
+
+
 enableScreens();
 
 export default function App() {
