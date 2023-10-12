@@ -1,21 +1,17 @@
-import React, {useState, useCallback, useEffect, useRef} from 'react';
-import {StyleSheet, FlatList, Text} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {SafeAreaView, View, UnderlineText, TopBar} from '../theme/navigation';
-import {ScrollEnabledProvider, useScrollEnabled} from '../contexts';
+import React from 'react';
+import {StyleSheet, View, Text} from 'react-native';
+import {MD2Colors as Colors} from 'react-native-paper';
 import * as D from '../data';
-import Person from './Person';
-import {LeftRightNavigation} from '../components';
-import type {LeftRightNavigationMethods} from '../components';
 
-export default function Home() {
+const title = 'CopyMe';
+export default function CopyMe() {
   return (
-    <SafeAreaView>
-      <Text>Home Left</Text>
-    </SafeAreaView>
+    <View style={[styles.view]}>
+      <Text style={[styles.text]}>{title}</Text>
+    </View>
   );
 }
 const styles = StyleSheet.create({
-  view: {flex: 1},
-  text: {marginRight: 10, fontSize: 20},
+  view: {flex: 1, padding: 5, backgroundColor: Colors.blue900},
+  text: {fontSize: 20, color: 'white'},
 });
