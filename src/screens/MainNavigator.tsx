@@ -10,6 +10,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import HomeScreen from './HomeScreen';
 import LeftScreen from './LeftScreen';
+import DetailScreen from './DetailScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export default function MainNavigator() {
     <Stack.Navigator initialRouteName="HomeScreen">
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="LeftScreen" component={LeftScreen} />
+      <Stack.Screen name="DetailScreen" component={DetailScreen} />
     </Stack.Navigator>
   );
 }
