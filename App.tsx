@@ -8,43 +8,70 @@ LogBox.ignoreLogs(['The title']);
 LogBox.ignoreLogs(['']);
 //
 
-import 'react-native-gesture-handler';
-import React, {useState, useCallback} from 'react';
+import * as React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Settings from './src/pages/Settings';
+import Orders from './src/pages/Orders';
+import Delivery from './src/pages/Delivery';
+import {useState} from 'react';
+import SignIn from './src/pages/SignIn';
+import SignUp from './src/pages/SignUp';
 
-import {enableScreens} from 'react-native-screens';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+export type LoggedInParamList = {
+  Orders: undefined;
+  Settings: undefined;
+  Delivery: undefined;
+  Complete: {orderId: string};
+};
 
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native';
-import {useColorScheme} from 'react-native';
-import {ToggleThemeProvider} from './src/contexts';
+export type RootStackParamList = {
+  SignIn: undefined;
+  SignUp: undefined;
+};
 
-import MainNavigator from './src/screens/MainNavigator';
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-
-
-enableScreens();
-
-export default function App() {
-  const scheme = useColorScheme(); // 'dark' 혹은 'light'
-  const [theme, setTheme] = useState(
-    scheme === 'dark' ? DarkTheme : DefaultTheme,
-  );
-
-  const toggleTheme = useCallback(
-    () => setTheme(({dark}) => (dark ? DefaultTheme : DarkTheme)),
-    [],
-  );
+function App() {
+  const [isLoggedIn, setLoggedIn] = useState(false);
   return (
-    <ToggleThemeProvider toggleTheme={toggleTheme}>
-      <SafeAreaProvider>
-        <NavigationContainer theme={theme}>
-          <MainNavigator />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </ToggleThemeProvider>
+    <NavigationContainer>
+      {isLoggedIn ? (
+        <Tab.Navigator>
+          <Tab.Screen
+            name="Orders"
+            component={Orders}
+            options={{title: '오더 목록'}}
+          />
+          <Tab.Screen
+            name="Delivery"
+            component={Delivery}
+            options={{headerShown: false}}
+          />
+          <Tab.Screen
+            name="Settings"
+            component={Settings}
+            options={{title: '내 정보'}}
+          />
+        </Tab.Navigator>
+      ) : (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{title: '로그인'}}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignUp}
+            options={{title: '회원가입'}}
+          />
+        </Stack.Navigator>
+      )}
+    </NavigationContainer>
   );
 }
+
+export default App;
