@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react'
 import {
   Alert,
   Platform,
@@ -7,58 +7,58 @@ import {
   Text,
   TextInput,
   View,
-} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../App';
-import DismissKeyboardView from '../components/DismissKeyboardView';
+} from 'react-native'
+import {NativeStackScreenProps} from '@react-navigation/native-stack'
+import {RootStackParamList} from '../../App'
+import DismissKeyboardView from '../components/DismissKeyboardView'
 
-type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
+type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>
 
 function SignUp({navigation}: SignUpScreenProps) {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const emailRef = useRef<TextInput | null>(null);
-  const nameRef = useRef<TextInput | null>(null);
-  const passwordRef = useRef<TextInput | null>(null);
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+  const emailRef = useRef<TextInput | null>(null)
+  const nameRef = useRef<TextInput | null>(null)
+  const passwordRef = useRef<TextInput | null>(null)
 
   const onChangeEmail = useCallback((text: string) => {
-    setEmail(text.trim());
-  }, []);
+    setEmail(text.trim())
+  }, [])
   const onChangeName = useCallback((text: string) => {
-    setName(text.trim());
-  }, []);
+    setName(text.trim())
+  }, [])
   const onChangePassword = useCallback((text: string) => {
-    setPassword(text.trim());
-  }, []);
+    setPassword(text.trim())
+  }, [])
   const onSubmit = useCallback(() => {
     if (!email || !email.trim()) {
-      return Alert.alert('알림', '이메일을 입력해주세요.');
+      return Alert.alert('알림', '이메일을 입력해주세요.')
     }
     if (!name || !name.trim()) {
-      return Alert.alert('알림', '이름을 입력해주세요.');
+      return Alert.alert('알림', '이름을 입력해주세요.')
     }
     if (!password || !password.trim()) {
-      return Alert.alert('알림', '비밀번호를 입력해주세요.');
+      return Alert.alert('알림', '비밀번호를 입력해주세요.')
     }
     if (
       !/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/.test(
         email,
       )
     ) {
-      return Alert.alert('알림', '올바른 이메일 주소가 아닙니다.');
+      return Alert.alert('알림', '올바른 이메일 주소가 아닙니다.')
     }
     if (!/^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@^!%*#?&]).{8,50}$/.test(password)) {
       return Alert.alert(
         '알림',
         '비밀번호는 영문,숫자,특수문자($@^!%*#?&)를 모두 포함하여 8자 이상 입력해야합니다.',
-      );
+      )
     }
-    console.log(email, name, password);
-    Alert.alert('알림', '회원가입 되었습니다.');
-  }, [email, name, password]);
+    console.log(email, name, password)
+    Alert.alert('알림', '회원가입 되었습니다.')
+  }, [email, name, password])
 
-  const canGoNext = email && name && password;
+  const canGoNext = email && name && password
   return (
     <DismissKeyboardView>
       <View style={styles.inputWrapper}>
@@ -123,7 +123,7 @@ function SignUp({navigation}: SignUpScreenProps) {
         </Pressable>
       </View>
     </DismissKeyboardView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -156,6 +156,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
-});
+})
 
-export default SignUp;
+export default SignUp

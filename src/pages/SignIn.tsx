@@ -7,7 +7,6 @@ import DismissKeyboardView from '../components/DismissKeyboardView'
 //app.tsx에서 paramlist를 한정하고 여기서 타입을 지정해줬기 때문에 허용된 곳으로만 갈 수 있게 설정 가능.
 type SignInScreenProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>
 
-
 function SignIn({navigation}: SignInScreenProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -91,9 +90,9 @@ function SignIn({navigation}: SignInScreenProps) {
           <Text style={styles.loginButtonText}>회원가입</Text>
         </Pressable>
       </View>
-      <View></View>
-      <View></View>
-      <View></View>
+      <View />
+      <View />
+      <View />
     </DismissKeyboardView>
   )
 }
