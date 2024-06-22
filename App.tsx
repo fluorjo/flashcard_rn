@@ -1,3 +1,13 @@
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import * as React from 'react';
+import {useState} from 'react';
+import Delivery from './src/pages/Delivery';
+import Orders from './src/pages/Orders';
+import Settings from './src/pages/Settings';
+import SignIn from './src/pages/SignIn';
+import SignUp from './src/pages/SignUp';
 //에러 화면 방지
 import {LogBox} from 'react-native';
 console.error = error => error.apply;
@@ -6,37 +16,33 @@ LogBox.ignoreLogs(['Property ']);
 LogBox.ignoreLogs(['it is un']);
 LogBox.ignoreLogs(['The title']);
 LogBox.ignoreLogs(['']);
+LogBox.ignoreLogs(['Loading from metro...']);
+LogBox.ignoreLogs(['Loading']);
+LogBox.ignoreAllLogs(); // Ignore all log notifications
 //
-
-
-import * as React from 'react'
-import {NavigationContainer} from '@react-navigation/native'
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import Settings from './src/pages/Settings'
-import Orders from './src/pages/Orders'
-import Delivery from './src/pages/Delivery'
-import {useState} from 'react'
-import SignIn from './src/pages/SignIn'
-import SignUp from './src/pages/SignUp'
+import {DATABASE_URL, SUPABASE_ANON_KEY, SUPABASE_URL} from '@env';
 
 export type LoggedInParamList = {
-  Orders: undefined
-  Settings: undefined
-  Delivery: undefined
-  Complete: {orderId: string}
-}
+  Orders: undefined;
+  Settings: undefined;
+  Delivery: undefined;
+  Complete: {orderId: string};
+};
 
 export type RootStackParamList = {
-  SignIn: undefined
-  SignUp: undefined
-}
+  SignIn: undefined;
+  SignUp: undefined;
+};
 
-const Tab = createBottomTabNavigator()
-const Stack = createNativeStackNavigator<RootStackParamList>()
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(false)
+  console.log('SUPABASE_URL :: ', SUPABASE_URL);
+  console.log('DATABASE_URL :: ', DATABASE_URL);
+  console.log('SUPABASE_ANON_KEY :: ', SUPABASE_ANON_KEY);
+
+  const [isLoggedIn, setLoggedIn] = useState(true);
   return (
     <NavigationContainer>
       {isLoggedIn ? (
@@ -72,7 +78,7 @@ function App() {
         </Stack.Navigator>
       )}
     </NavigationContainer>
-  )
+  );
 }
 
-export default App
+export default App;
