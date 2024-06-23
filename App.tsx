@@ -20,8 +20,6 @@ LogBox.ignoreLogs(['Loading from metro...']);
 LogBox.ignoreLogs(['Loading']);
 LogBox.ignoreAllLogs(); // Ignore all log notifications
 //
-import {DATABASE_URL, SUPABASE_ANON_KEY, SUPABASE_URL} from '@env';
-
 export type LoggedInParamList = {
   Orders: undefined;
   Settings: undefined;
@@ -38,9 +36,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
-  console.log('SUPABASE_URL :: ', SUPABASE_URL);
-  console.log('DATABASE_URL :: ', DATABASE_URL);
-  console.log('SUPABASE_ANON_KEY :: ', SUPABASE_ANON_KEY);
+
 
   const [isLoggedIn, setLoggedIn] = useState(true);
   return (
