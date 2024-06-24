@@ -1,21 +1,46 @@
-import React, { useEffect } from 'react';
-import {Text, View} from 'react-native';
-import {SUPABASE_URL, DATABASE_URL, SUPABASE_ANON_KEY} from '@env';
-import { supabase } from '../../supabase/supabase';
-
-function Orders() {
-const getItems = async ()=>{
-  let { data: Card, error } = await supabase
-  .from('Card')
-  .select('*')
-  return Card
+import React, {useEffect, useState} from 'react';
+import {FlatList, Text, View} from 'react-native';
+import 'react-native-url-polyfill/auto';
+import supabase from '../../supabase/supabase';
+import CardItem from '../components/CardItem';
+interface Card {
+  id: number;
+  question: string;
+  correctAnswer: string;
 }
-useEffect(()=>{
-  getItems().then((items)=>{console.log(items)})
-},[])
+function Orders() {
+  const [cards, setCards] = useState<Card[]>([]);
+
+  const getCards = async (): Promise<Card[]> => {
+    let {data: Cards, error} = await supabase.from('Card').select('*');
+    console.log(Cards)
+    if (error) {
+      console.error('Error fetching cards:', error);
+      return [];
+    }
+    return Cards || [];
+  };
+  useEffect(() => {
+    getCards().then(cards => {
+      setCards(cards);
+    });
+  }, []);
   return (
     <View>
-      <Text>{SUPABASE_URL}</Text>
+      <Text>dddd</Text>
+      <FlatList
+        data={cards}
+        renderItem={({item, index}) => (
+          <>
+            <CardItem cards={item} />
+          </>
+        )}
+        keyExtractor={cards => cards.id + ''}
+      />
+
+      {/* {cards.map(card => (
+        <View key={card.id}>{card.question}</View>
+      ))} */}
     </View>
   );
 }

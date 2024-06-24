@@ -9,17 +9,7 @@ import Settings from './src/pages/Settings';
 import SignIn from './src/pages/SignIn';
 import SignUp from './src/pages/SignUp';
 //에러 화면 방지
-import {LogBox} from 'react-native';
-console.error = error => error.apply;
-LogBox.ignoreAllLogs();
-LogBox.ignoreLogs(['Property ']);
-LogBox.ignoreLogs(['it is un']);
-LogBox.ignoreLogs(['The title']);
-LogBox.ignoreLogs(['']);
-LogBox.ignoreLogs(['Loading from metro...']);
-LogBox.ignoreLogs(['Loading']);
-LogBox.ignoreAllLogs(); // Ignore all log notifications
-//
+
 export type LoggedInParamList = {
   Orders: undefined;
   Settings: undefined;
