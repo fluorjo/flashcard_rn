@@ -1,46 +1,51 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
 import 'react-native-url-polyfill/auto';
 import supabase from '../../supabase/supabase';
 import CardItem from '../components/CardItem';
+
 interface Card {
   id: number;
   question: string;
   correctAnswer: string;
 }
+
 function Orders() {
   const [cards, setCards] = useState<Card[]>([]);
 
   const getCards = async (): Promise<Card[]> => {
-    let {data: Cards, error} = await supabase.from('Card').select('*');
-    console.log(Cards)
+    let { data: Cards, error } = await supabase.from('Card').select('*');
+    
     if (error) {
       console.error('Error fetching cards:', error);
       return [];
     }
+    
+    console.log('Fetched Cards', Cards);
+    
     return Cards || [];
   };
+
   useEffect(() => {
     getCards().then(cards => {
       setCards(cards);
+    }).catch(err => {
+      console.error('Error in useEffect:', err);
     });
   }, []);
+
   return (
     <View>
-      <Text>dddd</Text>
+      <Text>Card List</Text>
       <FlatList
         data={cards}
-        renderItem={({item, index}) => (
+        renderItem={({ item, index }) => (
           <>
-            <CardItem cards={item} />
+            <CardItem card={item} />
           </>
         )}
-        keyExtractor={cards => cards.id + ''}
+        keyExtractor={card => card.id.toString()}
       />
-
-      {/* {cards.map(card => (
-        <View key={card.id}>{card.question}</View>
-      ))} */}
     </View>
   );
 }
