@@ -1,10 +1,21 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-const CardItem = (cards) => {
+import { View, Text } from 'react-native';
+
+interface CardItemProps {
+  card: {
+    id: number;
+    question: string;
+    correctAnswer: string;
+  };
+}
+
+const CardItem: React.FC<CardItemProps> = ({ card }) => {
   return (
     <View>
-      <Text>{cards.question}</Text>
+      <Text>{card.question}</Text>
+      <Text>{card.correctAnswer}</Text>
     </View>
   );
 };
+
 export default CardItem;

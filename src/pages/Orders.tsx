@@ -20,9 +20,7 @@ function Orders() {
       console.error('Error fetching cards:', error);
       return [];
     }
-    
     console.log('Fetched Cards', Cards);
-    
     return Cards || [];
   };
 
@@ -33,17 +31,16 @@ function Orders() {
       console.error('Error in useEffect:', err);
     });
   }, []);
+  const renderItem = ({ item }: { item: Card }) => (
+    <CardItem card={item} />
+  );
 
   return (
     <View>
       <Text>Card List</Text>
       <FlatList
         data={cards}
-        renderItem={({ item, index }) => (
-          <>
-            <CardItem card={item} />
-          </>
-        )}
+        renderItem={renderItem}
         keyExtractor={card => card.id.toString()}
       />
     </View>
